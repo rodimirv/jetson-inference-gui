@@ -1,6 +1,6 @@
 
 # Author: Rodimir Vilale
-# Revision 1
+# Revision 2 - Added Swapfile
 # May 3, 2021
 
 from tkinter import *
@@ -29,8 +29,8 @@ folderName = ''
 def btnInstallers_click():
 	installers = Tk()
 	installers.title('INSTALLERS')
-	installers.resizable(False, False)
-	
+	installers.resizable(False, False)	
+
 	# Gets the requested values of the height and width.
 	windowWidth = installers.winfo_reqwidth()
 	windowHeight = installers.winfo_reqheight()
@@ -63,6 +63,11 @@ def btnInstallers_click():
 
 	btnClnConf = Button(installers, text="8. Clean Configurations", command=btnClnConf_click)
 
+	btnInsSwapFileDef = Button(installers, text="9. Install Swapfile -Default", command=btnInsSwapFileDef_click)
+
+	swapFileLabel = Label(installers, text="The default Swapfile size is 6GB \nTo increase Swapfile use terminal and enter: \nbash installSwapfile.sh -s Size")
+
+
 	# Show Labels,Entry, and Buttons
 	insLabel1.grid(row=1, column=0, columnspan=8)
 	btnInsChkUpd.grid(row=2, column=0, columnspan=8)
@@ -73,6 +78,9 @@ def btnInstallers_click():
 	btncompileCM.grid(row=7, column=0, columnspan=8)
 	btnBldCpplibs.grid(row=8, column=0, columnspan=8)
 	btnClnConf.grid(row=9, column=0, columnspan=8)
+	btnInsSwapFileDef.grid(row=10, column=0, columnspan=8)
+	swapFileLabel.grid(row=11, column=0, columnspan=8)
+
 
 # Installer Controls
 def btnInsChkUpd_click():
@@ -101,6 +109,9 @@ def btnInsCpplibs_click():
 
 def btnClnConf_click():
 	call(['gnome-terminal', '--working-directory=/home/' +currentUser+ '/jetson-inference/build', '--', 'sudo', 'ldconfig'])
+
+def btnInsSwapFileDef_click():
+	call(['gnome-terminal', '--working-directory=/home/' +currentUser+ '/gui-inference/installSwapfile', '--', 'bash', 'installSwapfile.sh'])
 
 # Root Controls
 def btnCap_click():
