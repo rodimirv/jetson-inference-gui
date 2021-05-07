@@ -125,7 +125,9 @@ while True:
 			call('sudo apt-get install v4l-utils',shell=True)
 
 		def btnClnGit_click():
-			call('git clone --recursive https://github.com/dusty-nv/jetson-inference',shell=True)
+			call('git clone --recursive https://github.com/dusty-nv/jetson-inference temp',shell=True)
+			call('mv temp ~/jetson-inference' , shell=True)
+			call('rm -rf temp', shell=True)
 
 		def btnMkdir_click():
 			call('mkdir /home/' +currentUser+ '/jetson-inference/build',shell=True)
