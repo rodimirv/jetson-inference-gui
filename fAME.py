@@ -34,8 +34,9 @@ while True:
 		root.title('AME IIoT')
 		root.resizable(False, False)
 		ico = PhotoImage(file = 'flex_logo.png')
+		bnr = PhotoImage(file = 'AME IIoT.png')
 		root.iconphoto(True, ico)
-		panel = Label(root, image=ico, bg='white')
+		banner = Label(root, image=bnr, bg='white')
 
 		# Gets the requested values of the height and width.
 		windowWidth = root.winfo_reqwidth()
@@ -215,7 +216,7 @@ while True:
 		exportLabel = Label(root, text=folderEmpty, fg="red", bg='white')
 
 		# Show Labels,Entry, and Buttons
-		panel.grid(row=1, column=7, columnspan=8)
+		banner.grid(row=1, column=0, columnspan=8)
 		installersLabel.grid(row=2, column=0, columnspan=8)
 		btnInstallers.grid(row=3, column=0, columnspan=8)
 		cameraCaptureLabel.grid(row=4, column=0, columnspan=8)
