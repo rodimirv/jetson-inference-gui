@@ -1,12 +1,14 @@
 Author: Rodimir Vilale
 
-Current Revision: 2.1
+Current Revision: 2.2
 
 Revision 1	- May 2, 2021	- First draft
 
 Revision 2	- May 4, 2021	- Added Swapfile
 
 Revision 2.1	- May 7, 2021	- Added Tkinter install when Tkinter does not exist in the device, Added print colors
+
+Revision 2.2  - May 12, 2021 - Added folder template creation for jetson-inference/python/training/detection/ssd and also added modified PyDetectNet.cpp with SetClassColor() binding for opacity of a class' bounding box
 
 This application is specifically made for NVIDIA-Jetson devices as supplemental to the HELLO AI WORLD tutorial made by dusty-nv for object detection.
 
