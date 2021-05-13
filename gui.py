@@ -33,10 +33,10 @@ while True:
 	try:
 		root = Tk()
 		root.configure(background='white')
-		root.title('AME IIoT')
+		root.title('Jetson Inference')
 		root.resizable(False, False)
-		ico = PhotoImage(file = 'flex_logo.png')
-		bnr = PhotoImage(file = 'AME IIoT.png')
+		ico = PhotoImage(file = 'ico.png')
+		bnr = PhotoImage(file = 'bnr.png')
 		root.iconphoto(True, ico)
 		banner = Label(root, image=bnr, bg='white')
 
