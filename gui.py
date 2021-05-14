@@ -169,6 +169,18 @@ while True:
 		def btnShowCamLst_click():
 			call('v4l2-ctl --list-devices',shell=True)
 
+		def btnCopyTrValues_click():
+			folderName = trInput1.get()
+			cpRow = btnCopyTrValues.grid_info()['row']
+			if (folderName != ''):
+				call('cp -r ~/jetson-inference/python/training/detection/ssd/data/'+folderName+'/ImageSets/Main/train.txt  ~/jetson-inference/python/training/detection/ssd/data/'+folderName+'/ImageSets/Main/test.txt', shell=True)
+				call('cp -r ~/jetson-inference/python/training/detection/ssd/data/'+folderName+'/ImageSets/Main/train.txt  ~/jetson-inference/python/training/detection/ssd/data/'+folderName+'/ImageSets/Main/val.txt', shell=True)
+				copyTrLabel = Label(root, text='test.txt Values Copied to test.txt and val.txt', fg="green", bg='white')
+				copyTrLabel.grid(row=cpRow+1, column=0, columnspan=8)
+			else:
+				copyTrLabel = Label(root, text=folderEmpty, fg="red", bg='white')
+				copyTrLabel.grid(row=cpRow+1, column=0, columnspan=8)				
+
 		def btnTrain_click():
 			global folderName
 			folderName = trInput1.get()
@@ -204,20 +216,24 @@ while True:
 
 		CusMdlLabel = Label(root, text='\nCopy a blank template to the jetson-inference training folder \nwhere all your annotations, imagesets, JPEGimages, and labels.txt will be located and saved', bg='white')
 
-		crInputLabel1 = Label(root, text='       Name of the Folder to be Created:', bg='white')
+		crInputLabel1 = Label(root, text='     Name of the Folder to be Created:', bg='white')
 		crInput1 = Entry(root, width=10, bg='white', highlightbackground = hlColor)
 
 		btnCusMdlFolder = Button(root, text="Copy Template to the Jetson Training Folder", command=btnCusMdlFolder_click, padx=10, bg='white', highlightbackground = hlColor)
 
 		cameraCaptureLabel = Label(root, text='\nEnter device directory | e.g. /dev/video0' + '\nUse the "Show List of Cameras Detected" button if unknown', bg='white')
 
-		camDirInputLabel = Label(root, text='Camera Directory:   /dev/', bg='white')
+		camDirInputLabel = Label(root, text='Camera Directory: /dev/', bg='white')
 
 		camDirInput = Entry(root, width=9, bg='white', highlightbackground = hlColor)
 
 		btnCap = Button(root, text="Capture Camera", command=btnCap_click, padx=35, bg='white', highlightbackground = hlColor)
 
 		btnShowCamLst = Button(root, text="Show List of Cameras Detected", command=btnShowCamLst_click, bg='white', highlightbackground = hlColor)
+
+		b4trLabel = Label(root, text='\nEnter the folder name that was created and do the "Copy ImageSet Training Values to test.txt and val.txt" \nsince camera-capture does not automatically does it for you.\nThe folder name entered will also be used for training annotated models and exporting to ONNX', bg='white')
+
+		btnCopyTrValues = Button(root, text="Copy ImageSet Training Values to test.txt and val.txt", command=btnCopyTrValues_click, bg='white', highlightbackground = hlColor)
 
 		trLabel1 = Label(root, text='\nSet the following requirements then click on the "Train Annotated Models" button to start training custom model', bg='white')
 
@@ -226,7 +242,7 @@ while True:
 		trInputLabel3 = Label(root, text='Workers:', bg='white')
 		trInputLabel4 = Label(root, text='Epoch:', bg='white')
 		
-		trInput1 = Entry(root, width=10, bg='white', highlightbackground = hlColor)
+		trInput1 = Entry(root, width=20, bg='white', highlightbackground = hlColor)
 		trInput2 = Entry(root, width=10, bg='white', highlightbackground = hlColor)
 		trInput3 = Entry(root, width=10, bg='white', highlightbackground = hlColor)
 		trInput4 = Entry(root, width=10, bg='white', highlightbackground = hlColor)
@@ -245,24 +261,26 @@ while True:
 		btnInstallers.grid(row=3, column=0, columnspan=8)
 		CusMdlLabel.grid(row=4, column=0, columnspan=8)
 		crInputLabel1.grid(row=6, column=0, columnspan=3)
-		crInput1.grid(row=6, column=0, columnspan=7)
+		crInput1.grid(row=6, column=0, columnspan=6)
 		btnCusMdlFolder.grid(row=6, column=3, columnspan=8)
 		cameraCaptureLabel.grid(row=8, column=0, columnspan=8)
-		camDirInputLabel.grid(row=9, column=0, columnspan=2)
+		camDirInputLabel.grid(row=9, column=0, columnspan=3)
 		camDirInput.grid(row=9, column=0, columnspan=5)
 		btnCap.grid(row=9, column=0, columnspan=8)
 		btnShowCamLst.grid(row=9, column=5, columnspan=8)
-		trLabel1.grid(row=10, column=0, columnspan=8)
-		trInputLabel1.grid(row=12, column=0)
-		trInputLabel2.grid(row=12, column=2)
-		trInputLabel3.grid(row=12, column=4)
-		trInputLabel4.grid(row=12, column=6)
-		trInput1.grid(row=12, column=1)
-		trInput2.grid(row=12, column=3)
-		trInput3.grid(row=12, column=5)
-		trInput4.grid(row=12, column=7)
-		btnTrain.grid(row=13, column=0, columnspan=8)
-		btnExport.grid(row=16, column=0, columnspan=8)
+		b4trLabel.grid(row=10, column=0, columnspan=8)
+		trInputLabel1.grid(row=11, column=0, columnspan=6)
+		trInput1.grid(row=11, column=2, columnspan=6)
+		btnCopyTrValues.grid(row=12, column=0, columnspan=8)
+		trLabel1.grid(row=14, column=0, columnspan=8)
+		trInputLabel2.grid(row=17, column=1)
+		trInputLabel3.grid(row=17, column=3)
+		trInputLabel4.grid(row=17, column=5)
+		trInput2.grid(row=17, column=2)
+		trInput3.grid(row=17, column=4)
+		trInput4.grid(row=17, column=6)
+		btnTrain.grid(row=19, column=0, columnspan=8)
+		btnExport.grid(row=20, column=0, columnspan=8)
 
 
 		root.mainloop()
