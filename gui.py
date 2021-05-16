@@ -19,6 +19,12 @@ class bcolors:
 	OKGREEN = '\033[92m'
 	OKBLUE = '\033[94m'
 	OKCYAN = '\033[96m'
+class winTitle:
+	MAIN = 'JETSON INFERENCE'
+	WINDOW1 = 'INSTALLERS'
+class picFile:
+	ico = 'ico.png'
+	bnr = 'bnr.png'
 	
 # Try to import Tkinter, if Tkinter does not exist in the system the installation of Tkinter will run
 while True:
@@ -33,10 +39,10 @@ while True:
 	try:
 		root = Tk()
 		root.configure(background='white')
-		root.title('Jetson Inference')
+		root.title(winTitle.MAIN)
 		root.resizable(False, False)
-		ico = PhotoImage(file = 'ico.png')
-		bnr = PhotoImage(file = 'bnr.png')
+		ico = PhotoImage(file = picFile.ico)
+		bnr = PhotoImage(file = picFile.bnr)
 		root.iconphoto(True, ico)
 		banner = Label(root, image=bnr, bg='white')
 
@@ -62,7 +68,7 @@ while True:
 
 		def btnInstallers_click():
 			installers = Tk()
-			installers.title('INSTALLERS')
+			installers.title(winTitle.WINDOW1)
 			installers.resizable(False, False)
 			installers.configure(background='white')
 
@@ -216,16 +222,16 @@ while True:
 
 		CusMdlLabel = Label(root, text='\nCopy a blank template to the jetson-inference training folder \nwhere all your annotations, imagesets, JPEGimages, and labels.txt will be located and saved', bg='white')
 
-		crInputLabel1 = Label(root, text='     Name of the Folder to be Created:', bg='white')
-		crInput1 = Entry(root, width=10, bg='white', highlightbackground = hlColor)
+		crInputLabel1 = Label(root, text='Name of the Folder to be Created:', bg='white')
+		crInput1 = Entry(root, width=9, bg='white', highlightbackground = hlColor)
 
 		btnCusMdlFolder = Button(root, text="Copy Template to the Jetson Training Folder", command=btnCusMdlFolder_click, padx=10, bg='white', highlightbackground = hlColor)
 
 		cameraCaptureLabel = Label(root, text='\nEnter device directory | e.g. /dev/video0' + '\nUse the "Show List of Cameras Detected" button if unknown', bg='white')
 
-		camDirInputLabel = Label(root, text='Camera Directory: /dev/', bg='white')
+		camDirInputLabel = Label(root, text='Camera Directory:/dev/', bg='white')
 
-		camDirInput = Entry(root, width=9, bg='white', highlightbackground = hlColor)
+		camDirInput = Entry(root, width=6, bg='white', highlightbackground = hlColor)
 
 		btnCap = Button(root, text="Capture Camera", command=btnCap_click, padx=35, bg='white', highlightbackground = hlColor)
 
@@ -280,7 +286,7 @@ while True:
 		trInput3.grid(row=17, column=4)
 		trInput4.grid(row=17, column=6)
 		btnTrain.grid(row=19, column=0, columnspan=8)
-		btnExport.grid(row=20, column=0, columnspan=8)
+		btnExport.grid(row=25, column=0, columnspan=8)
 
 
 		root.mainloop()
